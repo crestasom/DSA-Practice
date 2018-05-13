@@ -52,7 +52,7 @@ insert()
         front = 0;
         printf("Inset the element in queue : ");
         scanf("%d", &add_item);
-        rear = rear + 1;
+        rear++;
         queue_array[rear] = add_item;
     }
 } /*End of insert()*/
@@ -67,7 +67,7 @@ delete()
     else
     {
         printf("Element deleted from queue is : %d\n", queue_array[front]);
-        front = front + 1;
+        front++;
     }
 } /*End of delete() */
 display()
