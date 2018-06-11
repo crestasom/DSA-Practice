@@ -9,6 +9,7 @@ void insert(int item)
     if(hashTable[hashKey]==0)
     {
         hashTable[hashKey]=item;
+        printf("%d added at index %d",item,hashKey);
     }else
     {
         printf("Collision Detected..Could Not add item");
@@ -42,33 +43,45 @@ void delete(int item)
 
 main()
 {
-    int i,searchKey;
+    int i,searchKey,ch,num;
     for(i=0;i<SIZE;i++)
         hashTable[i]=0;
-    insert(20);
-    insert(34);
-    insert(235);
-    insert(567);
-    insert(876);
-    insert(233);
-    insert(435);
-    searchKey=search(235);
-    if(searchKey!=-1)
+        
+    while(1)
     {
-        printf("\nItem found at %d index",searchKey);
-    }
-    else
-    {
-        printf("\nItem Not found in hash list");
-    }
-    delete(235);
-    searchKey=search(235);
-    if(searchKey!=-1)
-    {
-        printf("\nItem found at %d index",searchKey);
-    }
-    else
-    {
-        printf("\nItem Not found in hash list");
-    }
+    	system("cls");
+    	printf("\Hash Table Program\n1. Insert\n2.Search\n3.Remove\nEnter Your Choice:");
+  		scanf("%d",&ch);
+  		switch(ch)
+  		{
+  			case 1:
+  				printf("Enter number to insert:");
+  				scanf("%d",&num);
+  				insert(num);
+  				break;
+  				
+  			case 2:
+  				printf("Enter number to search:");
+  				scanf("%d",&num);
+  				searchKey=search(num);
+    			if(searchKey!=-1)
+    			{
+        			printf("\nItem found at %d index",searchKey);
+    			}
+  				else
+   				{
+        			printf("\nItem Not found in hash list");
+    			}
+  				break;
+  				
+  		case 3:
+  			printf("Enter number to delete:");
+  			scanf("%d",&num);
+  			searchKey=search(num);
+  			delete(num);
+  			break;
+  			
+		}
+		getch();
+	}
 }
