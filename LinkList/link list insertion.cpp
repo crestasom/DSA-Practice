@@ -50,7 +50,6 @@ void insertFirst(int data,struct Node* head)
 
 void insertAfter(int data,int searchKey,struct Node* head)
 {
-    ++i;
     struct Node* new_node = new(struct Node);
      struct Node* current=head->next;
     if(new_node == NULL)
