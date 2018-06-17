@@ -7,12 +7,11 @@ struct Node
   struct Node *next;
 };
 
-
  void print(struct Node * head) {
    struct Node* current = head->next;
-    printf("**Elements in array**\n");
+    printf("\n\n**Elements in array**\n");
     while (current != NULL) {
-        printf("%d\n", current->data);
+        printf("%d->", current->data);
         current = current->next;
     }
 }
@@ -39,11 +38,42 @@ void insertLast(int data,struct Node* head)
 void insertFirst(int data,struct Node* head)
 {
     struct Node* new_node = (struct Node*)malloc(sizeof(struct Node));
+    if(new_node == NULL)
+    {
+        printf("Error creating a new node.\n");
+        exit(0);
+    }
     new_node->data = data;
     new_node->next=head->next;
     head->next=new_node;
 }
 
+void insertAfter(int data,int searchKey,struct Node* head)
+{
+    ++i;
+    struct Node* new_node = (struct Node*)malloc(sizeof(struct Node));
+     struct Node* current=head->next;
+    if(new_node == NULL)
+    {
+        printf("Error creating a new node.\n");
+        exit(0);
+    }
+    new_node->data = data;
+    while (current->data != searchKey&&current->next!=NULL) {
+        current = current->next;
+    }
+
+    if(current->next==NULL)
+    {
+        printf("\n\nElement not found");
+    }
+    else
+    {
+        new_node->next=current->next;
+        current->next=new_node;
+
+    }
+}
 main()
 {
     struct Node* head = (struct Node*)malloc(sizeof(struct Node));
@@ -57,5 +87,8 @@ main()
     insertFirst(34,head);
     insertFirst(55,head);
     insertFirst(99,head);
+    print(head);
+    insertAfter(54,44,head);
+    insertAfter(100,202,head);
     print(head);
 }
