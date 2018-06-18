@@ -1,5 +1,6 @@
-#include<stdio.h>
+#include<iostream>
 #include<stdlib.h>
+using namespace std;
 
 struct Node
 {
@@ -9,9 +10,10 @@ struct Node
 
  void print(struct Node * head) {
    struct Node* current = head->next;
-    printf("\n\n**Elements in array**\n");
+    //printf("\n\n**Elements in array**\n");
+    cout<<"\n\n**Elements in array**\n";
     while (current != NULL) {
-        printf("%d->", current->data);
+        cout<<current->data<<"->";
         current = current->next;
     }
 }
@@ -23,7 +25,7 @@ void insertLast(int data,struct Node* head)
     struct Node* current=head;
     if(new_node == NULL)
     {
-        printf("Error creating a new node.\n");
+        cout<<"Error creating a new node."<<endl;
         exit(0);
     }
     new_node->data = data;
@@ -40,7 +42,7 @@ void insertFirst(int data,struct Node* head)
     struct Node* new_node = new(struct Node);
     if(new_node == NULL)
     {
-        printf("Error creating a new node.\n");
+        cout<<"Error creating a new node."<<endl;
         exit(0);
     }
     new_node->data = data;
@@ -54,7 +56,7 @@ void insertAfter(int data,int searchKey,struct Node* head)
      struct Node* current=head->next;
     if(new_node == NULL)
     {
-        printf("Error creating a new node.\n");
+        cout<<"Error creating a new node."<<endl;
         exit(0);
     }
     new_node->data = data;
@@ -64,7 +66,7 @@ void insertAfter(int data,int searchKey,struct Node* head)
 
     if(current->next==NULL)
     {
-        printf("\n\nElement not found");
+        cout<<"\nElement not found";
     }
     else
     {

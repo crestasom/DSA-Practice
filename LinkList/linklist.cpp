@@ -1,7 +1,7 @@
-// A simple C program to introduce
+// A simple C++ program to introduce
 // a linked list
-#include<stdio.h>
-#include<stdlib.h>
+#include<iostream>
+using namespace std;
 
 struct Node
 {
@@ -16,13 +16,7 @@ int main()
   struct Node* head = NULL;
   struct Node* second = NULL;
   struct Node* third = NULL;
-
-  // allocate 3 nodes in the heap
-//  head = (struct Node*)malloc(sizeof(struct Node));
-//  second = (struct Node*)malloc(sizeof(struct Node));
-//  third = (struct Node*)malloc(sizeof(struct Node));
-
-    head = new(struct Node);
+  head = new(struct Node);
   second = new(struct Node);
   third = new(struct Node);
 
@@ -88,7 +82,7 @@ int main()
     traverse the complete list by following next pointers.    */
     while(head!=NULL)
     {
-    	printf("\n%d",head->data);
+    	cout<<head->data<<"->";
     	head=head->next;
 	}
 
