@@ -10,31 +10,89 @@ struct Node
 
 
 void print(struct Node * head) {
-   struct Node* current = head->next;
+   //struct Node* current = head->next;
     //printf("\n\n**Elements in array**\n");
-    cout<<"\n\n**Elements in array**\n";
-    while (current != NULL) {
-        cout<<current->data<<"->";
-        current = current->next;
+    head=head->next;
+    cout<<"\n**Elements in array**\n";
+    while (head != NULL) {
+        cout<<head->data<<"->";
+        head = head->next;
     }
 }
 
 
-struct Node* deleteFirst(struct Node *head)
+void deleteFirst(struct Node** headRef)
 {
-    struct Node *temp=head->next;
-    head=head->next;
-    cout<<"Deleted:"<<temp->data<<endl;
+    if((*headRef)->next==NULL)
+    {
+        cout<<"List is empty";
+        return;
+    }
+    struct Node *temp=(*headRef)->next;
+    (*headRef)=(*headRef)->next;
+    cout<<"\n\nDeleted:"<<temp->data<<endl;
     delete(temp);
-    return head;
+}
+void deleteLast(struct Node **headRef)
+{
+    if((*headRef)->next==NULL)
+    {
+        cout<<"\nList empty";
+//        return NULL;
+    }
+    else
+    {
+        struct Node* temp = (*headRef);
+        while(temp->next->next!=NULL)
+        {
+            temp=temp->next;
+        }
+        cout<<"\nDeleted:"<<temp->next->data<<endl;
+        free(temp->next);
+        temp->next=NULL;
+    }
+
 }
 
-void deleteFirstDouble(struct Node** head)
+/* Given a reference (pointer to pointer) to the head of a list
+   and a key, deletes the first occurrence of key in linked list */
+void deleteNode(struct Node **headRef, int key)
 {
-    struct Node *temp=(*head)->next;
-    (*head)=(*head)->next;
-    cout<<"Deleted:"<<temp->data<<endl;
-    delete(temp);
+    // Store head node
+    struct Node* temp = (*headRef)->next;
+
+    if(temp==NULL)
+    {
+        cout<<"List is empty";
+    }
+    // If head node itself holds the key to be deleted
+    else if (temp != NULL && temp->data == key)
+    {
+        *headRef = temp->next;   // Changed head
+        free(temp);               // free old head
+        return;
+    }
+    else
+    {
+        // Search for the key to be deleted, keep track of the
+        // previous node as we need to change 'prev->next'
+        while (temp->next != NULL && temp->next->data != key)
+        {
+            temp = temp->next;
+        }
+
+        // If key was not present in linked list
+        if (temp->next == NULL)
+        {
+            cout<<"\n Data not found";
+            return;
+        }
+
+        cout<<"\n"<<temp->next->data<<" has been deleted";
+        free(temp->next);  // Free memory
+        temp->next=temp->next->next;
+    }
+
 }
 
 void insertLast(int data,struct Node* head)
@@ -60,13 +118,45 @@ main()
 {
     struct Node* head = (struct Node*)malloc(sizeof(struct Node));
     head->next=NULL;
+    deleteLast(&head);
     insertLast(23,head);
     insertLast(24,head);
     insertLast(44,head);
     insertLast(22,head);
     insertLast(77,head);
+    insertLast(67,head);
+    insertLast(90,head);
     print(head);
-    //head=deleteFirst(head);
-    deleteFirstDouble(&head);
+
+//    deleteFirst(&head);
+//    print(head);
+//    deleteFirst(&head);
+//    print(head);
+//    deleteFirst(&head);
+//    print(head);
+//    deleteFirst(&head);
+//    print(head);
+//    deleteFirst(&head);
+//    print(head);
+//
+//
+    deleteLast(&head);
     print(head);
+    deleteLast(&head);
+    print(head);
+    deleteLast(&head);
+    print(head);
+    deleteLast(&head);
+    print(head);
+    deleteLast(&head);
+    print(head);
+
+//
+//    deleteNode(&head,2002);
+//    deleteNode(&head,22);
+//    print(head);
+//    deleteNode(&head,77);
+//    print(head);
+//    deleteNode(&head,90);
+//    print(head);
 }
