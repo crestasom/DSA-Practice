@@ -21,34 +21,34 @@ void print(struct Node * head) {
 }
 
 
-void deleteFirst(struct Node** headRef)
+void deleteFirst(struct Node* headRef)
 {
-    if((*headRef)->next==NULL)
+    if((headRef->next)==NULL)
     {
         cout<<"List is empty";
         return;
     }
-    struct Node *temp=(*headRef)->next;
-    (*headRef)=(*headRef)->next;
+    struct Node *temp=(headRef->next);
+    (headRef->next)=(headRef)->next->next;
     cout<<"\n\nDeleted:"<<temp->data<<endl;
     delete(temp);
 }
-void deleteLast(struct Node **headRef)
+void deleteLast(struct Node *headRef)
 {
-    if((*headRef)->next==NULL)
+    if((headRef)->next==NULL)
     {
         cout<<"\nList empty";
 //        return NULL;
     }
     else
     {
-        struct Node* temp = (*headRef);
+        struct Node* temp = (headRef);
         while(temp->next->next!=NULL)
         {
             temp=temp->next;
         }
         cout<<"\nDeleted:"<<temp->next->data<<endl;
-        free(temp->next);
+        delete(temp->next);
         temp->next=NULL;
     }
 
@@ -56,10 +56,10 @@ void deleteLast(struct Node **headRef)
 
 /* Given a reference (pointer to pointer) to the head of a list
    and a key, deletes the first occurrence of key in linked list */
-void deleteNode(struct Node **headRef, int key)
+void deleteNode(struct Node *headRef, int key)
 {
     // Store head node
-    struct Node* temp = (*headRef)->next;
+    struct Node* temp = (headRef)->next;
 
     if(temp==NULL)
     {
@@ -68,7 +68,7 @@ void deleteNode(struct Node **headRef, int key)
     // If head node itself holds the key to be deleted
     else if (temp != NULL && temp->data == key)
     {
-        *headRef = temp->next;   // Changed head
+        headRef = temp->next;   // Changed head
         free(temp);               // free old head
         return;
     }
@@ -118,7 +118,7 @@ main()
 {
     struct Node* head = (struct Node*)malloc(sizeof(struct Node));
     head->next=NULL;
-    deleteLast(&head);
+    deleteFirst(head);
     insertLast(23,head);
     insertLast(24,head);
     insertLast(44,head);
@@ -128,35 +128,35 @@ main()
     insertLast(90,head);
     print(head);
 
-//    deleteFirst(&head);
+//    deleteFirst(head);
 //    print(head);
-//    deleteFirst(&head);
+//    deleteFirst(head);
 //    print(head);
-//    deleteFirst(&head);
+//    deleteFirst(head);
 //    print(head);
-//    deleteFirst(&head);
+//    deleteFirst(head);
 //    print(head);
 //    deleteFirst(&head);
 //    print(head);
 //
 //
-    deleteLast(&head);
-    print(head);
-    deleteLast(&head);
-    print(head);
-    deleteLast(&head);
-    print(head);
-    deleteLast(&head);
-    print(head);
-    deleteLast(&head);
-    print(head);
+//    deleteLast(head);
+//    print(head);
+//    deleteLast(head);
+//    print(head);
+//    deleteLast(head);
+//    print(head);
+//    deleteLast(head);
+//    print(head);
+//    deleteLast(head);
+//    print(head);
 
-//
-//    deleteNode(&head,2002);
-//    deleteNode(&head,22);
-//    print(head);
-//    deleteNode(&head,77);
-//    print(head);
-//    deleteNode(&head,90);
-//    print(head);
+
+    deleteNode(head,2002);
+    deleteNode(head,22);
+    print(head);
+    deleteNode(head,77);
+    print(head);
+    deleteNode(head,90);
+    print(head);
 }

@@ -10,7 +10,6 @@ struct Node
 
  void print(struct Node * head) {
    struct Node* current = head->next;
-    //printf("\n\n**Elements in array**\n");
     cout<<"\n\n**Elements in array**\n";
     while (current != NULL) {
         cout<<current->data<<"->";
