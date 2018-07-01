@@ -23,7 +23,7 @@ void print(struct Node * head) {
 
 void deleteFirst(struct Node* headRef)
 {
-    if((headRef->next)==NULL)
+    if(headRef->next==NULL)
     {
         cout<<"List is empty";
         return;
@@ -33,6 +33,20 @@ void deleteFirst(struct Node* headRef)
     cout<<"\n\nDeleted:"<<temp->data<<endl;
     delete(temp);
 }
+
+void deleteFirstNode(struct Node** headRef)
+{
+    if((*headRef)->next==NULL)
+    {
+        cout<<"List is empty";
+        return;
+    }
+    struct Node *temp=(*headRef)->next;
+    (*headRef)->next=(*headRef)->next->next;
+    cout<<"\n\nDeleted:"<<temp->data<<endl;
+    delete(temp);
+}
+
 void deleteLast(struct Node *headRef)
 {
     if((headRef)->next==NULL)
@@ -116,7 +130,7 @@ void insertLast(int data,struct Node* head)
 
 main()
 {
-    struct Node* head = (struct Node*)malloc(sizeof(struct Node));
+    struct Node* head = new(struct Node);
     head->next=NULL;
     deleteFirst(head);
     insertLast(23,head);
@@ -128,16 +142,16 @@ main()
     insertLast(90,head);
     print(head);
 
-//    deleteFirst(head);
-//    print(head);
-//    deleteFirst(head);
-//    print(head);
-//    deleteFirst(head);
-//    print(head);
-//    deleteFirst(head);
-//    print(head);
-//    deleteFirst(&head);
-//    print(head);
+    deleteFirst(head);
+    print(head);
+    deleteFirst(head);
+    print(head);
+    deleteFirst(head);
+    print(head);
+    deleteFirst(head);
+    print(head);
+    deleteFirst(head);
+    print(head);
 //
 //
 //    deleteLast(head);
@@ -152,11 +166,11 @@ main()
 //    print(head);
 
 
-    deleteNode(head,2002);
-    deleteNode(head,22);
-    print(head);
-    deleteNode(head,77);
-    print(head);
-    deleteNode(head,90);
-    print(head);
+//    deleteNode(head,2002);
+//    deleteNode(head,22);
+//    print(head);
+//    deleteNode(head,77);
+//    print(head);
+//    deleteNode(head,90);
+//    print(head);
 }
