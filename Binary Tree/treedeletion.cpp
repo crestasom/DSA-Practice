@@ -47,7 +47,7 @@ struct node* insert(struct node* node, int key)
 /* Given a non-empty binary search tree, return the node with minimum
    key value found in that tree. Note that the entire tree does not
    need to be searched. */
-struct node * minValueNode(struct node* node)
+struct node* minValueNode(struct node* nssode)
 {
     struct node* current = node;
 
@@ -57,6 +57,9 @@ struct node * minValueNode(struct node* node)
 
     return current;
 }
+
+
+
 
 /* Given a binary search tree and a key, this function deletes the key
    and returns the new root */

@@ -1,47 +1,47 @@
 // C program to demonstrate insert operation in binary search tree
-#include<stdio.h>
+#include<iostream>
 #include<stdlib.h>
-
-struct node
+using namespace std;
+struct Node
 {
     int key;
-    struct node *left, *right;
+    struct Node *left, *right;
 };
 
-// A utility function to create a new BST node
-struct node *newNode(int item)
+// A utility function to create a new BST Node
+struct Node *newNode(int item)
 {
-    struct node *temp =  (struct node *)malloc(sizeof(struct node));
+    struct Node *temp =  new(Node);
     temp->key = item;
     temp->left = temp->right = NULL;
     return temp;
 }
 
 // A utility function to do inorder traversal of BST
-void inorder(struct node *root)
+void inorder(struct Node *root)
 {
     if (root != NULL)
     {
         inorder(root->left);
-        printf("%d \n", root->key);
+        cout<<root->key<<endl;
         inorder(root->right);
     }
 }
 
-/* A utility function to insert a new node with given key in BST */
-struct node* insert(struct node* node, int key)
+/* A utility function to insert a new Node with given key in BST */
+struct Node* insert(struct Node* Node, int key)
 {
-    /* If the tree is empty, return a new node */
-    if (node == NULL) return newNode(key);
+    /* If the tree is empty, return a new Node */
+    if (Node == NULL) return newNode(key);
 
     /* Otherwise, recur down the tree */
-    if (key < node->key)
-        node->left  = insert(node->left, key);
-    else if (key > node->key)
-        node->right = insert(node->right, key);
+    if (key < Node->key)
+        Node->left  = insert(Node->left, key);
+    else if (key > Node->key)
+        Node->right = insert(Node->right, key);
 
-    /* return the (unchanged) node pointer */
-    return node;
+    /* return the (unchanged) Node pointer */
+    return Node;
 }
 
 // Driver Program to test above functions
@@ -53,7 +53,7 @@ int main()
           30      70
          /  \    /  \
        20   40  60   80 */
-    struct node *root = NULL;
+    struct Node *root = NULL;
     root = insert(root, 50);
     insert(root, 30);
     insert(root, 20);
@@ -62,7 +62,7 @@ int main()
     insert(root, 60);
     insert(root, 80);
 
-    // print inoder traversal of the BST
+    // print iNoder traversal of the BST
     inorder(root);
 
     return 0;
