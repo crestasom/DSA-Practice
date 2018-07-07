@@ -29,20 +29,53 @@ void inorder(struct Node *root)
 }
 
 /* A utility function to insert a new Node with given key in BST */
-struct Node* insert(struct Node* Node, int key)
+struct Node* insertRecursive(struct Node* rootRef, int key)
 {
     /* If the tree is empty, return a new Node */
-    if (Node == NULL) return newNode(key);
+    if (rootRef == NULL) return newNode(key);
 
     /* Otherwise, recur down the tree */
-    if (key < Node->key)
-        Node->left  = insert(Node->left, key);
-    else if (key > Node->key)
-        Node->right = insert(Node->right, key);
+    if (key < rootRef->key)
+        rootRef->left  = insertRecursive(rootRef->left, key);
+    else if (key > rootRef->key)
+        rootRef->right = insertRecursive(rootRef->right, key);
 
     /* return the (unchanged) Node pointer */
-    return Node;
+    return rootRef;
 }
+
+struct Node* insert(struct Node* rootRef, int key)
+{
+    struct Node* parent,*current=rootRef;
+    struct Node* nNode=newNode(key);
+    /* If the tree is empty, return a new node */
+    if (rootRef == NULL) return nNode;
+
+    while(current!=NULL)
+    {
+        parent=current;
+        if (key < current->key)
+        {
+            current=current->left;
+        }
+        else if (key > current->key)
+        {
+            current=current->right;
+        }
+    }
+    if(parent->key<key)
+    {
+        parent->right=nNode;
+    }
+    else
+    {
+        parent->left=nNode;
+
+    }
+    /* return the (unchanged) node pointer */
+    return rootRef;
+}
+
 
 // Driver Program to test above functions
 int main()
@@ -54,13 +87,13 @@ int main()
          /  \    /  \
        20   40  60   80 */
     struct Node *root = NULL;
-    root = insert(root, 50);
-    insert(root, 30);
-    insert(root, 20);
-    insert(root, 40);
-    insert(root, 70);
-    insert(root, 60);
-    insert(root, 80);
+    root = insertRecursive(root, 50);
+    insertRecursive(root, 30);
+    insertRecursive(root, 20);
+    insertRecursive(root, 40);
+    insertRecursive(root, 70);
+    insertRecursive(root, 60);
+    insertRecursive(root, 80);
 
     // print iNoder traversal of the BST
     inorder(root);

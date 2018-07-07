@@ -2,23 +2,23 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-struct node
+struct Node
 {
     int key;
-    struct node *left, *right;
+    struct Node *left, *right;
 };
 
-// A utility function to create a new BST node
-struct node *newNode(int item)
+// A utility function to create a new BST Node
+struct Node *newNode(int item)
 {
-    struct node *temp =  (struct node *)malloc(sizeof(struct node));
+    struct Node *temp =  (struct Node *)malloc(sizeof(struct Node));
     temp->key = item;
     temp->left = temp->right = NULL;
     return temp;
 }
 
 // A utility function to do inorder traversal of BST
-void inorder(struct node *root)
+void inorder(struct Node *root)
 {
     if (root != NULL)
     {
@@ -28,28 +28,28 @@ void inorder(struct node *root)
     }
 }
 
-/* A utility function to insert a new node with given key in BST */
-struct node* insert(struct node* node, int key)
+/* A utility function to insert a new Node with given key in BST */
+struct Node* insert(struct Node* Node, int key)
 {
-    /* If the tree is empty, return a new node */
-    if (node == NULL) return newNode(key);
+    /* If the tree is empty, return a new Node */
+    if (Node == NULL) return newNode(key);
 
     /* Otherwise, recur down the tree */
-    if (key < node->key)
-        node->left  = insert(node->left, key);
+    if (key < Node->key)
+        Node->left  = insert(Node->left, key);
     else
-        node->right = insert(node->right, key);
+        Node->right = insert(Node->right, key);
 
-    /* return the (unchanged) node pointer */
-    return node;
+    /* return the (unchanged) Node pointer */
+    return Node;
 }
 
-/* Given a non-empty binary search tree, return the node with minimum
+/* Given a non-empty binary search tree, return the Node with minimum
    key value found in that tree. Note that the entire tree does not
    need to be searched. */
-struct node* minValueNode(struct node* nssode)
+struct Node* minValueNode(struct Node* nssode)
 {
-    struct node* current = node;
+    struct Node* current = nssode;
 
     /* loop down to find the leftmost leaf */
     while (current->left != NULL)
@@ -63,7 +63,7 @@ struct node* minValueNode(struct node* nssode)
 
 /* Given a binary search tree and a key, this function deletes the key
    and returns the new root */
-struct node* deleteNode(struct node* root, int key)
+struct Node* deleteNode(struct Node* root, int key)
 {
     // base case
     if (root == NULL) return root;
@@ -78,29 +78,29 @@ struct node* deleteNode(struct node* root, int key)
     else if (key > root->key)
         root->right = deleteNode(root->right, key);
 
-    // if key is same as root's key, then This is the node
+    // if key is same as root's key, then This is the Node
     // to be deleted
     else
     {
-        // node with only one child or no child
+        // Node with only one child or no child
         if (root->left == NULL)
         {
-            struct node *temp = root->right;
+            struct Node *temp = root->right;
             free(root);
             return temp;
         }
         else if (root->right == NULL)
         {
-            struct node *temp = root->left;
+            struct Node *temp = root->left;
             free(root);
             return temp;
         }
 
-        // node with two children: Get the inorder successor (smallest
+        // Node with two children: Get the inorder successor (smallest
         // in the right subtree)
-        struct node* temp = minValueNode(root->right);
+        struct Node* temp = minValueNode(root->right);
 
-        // Copy the inorder successor's content to this node
+        // Copy the inorder successor's content to this Node
         root->key = temp->key;
 
         // Delete the inorder successor
@@ -118,7 +118,7 @@ int main()
           30      70
          /  \    /  \
        20   40  60   80 */
-    struct node *root = NULL;
+    struct Node *root = NULL;
     root = insert(root, 50);
     root = insert(root, 30);
     root = insert(root, 20);
