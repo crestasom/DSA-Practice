@@ -1,9 +1,12 @@
 #include<iostream>
+#include<conio.h>
+#include<stdlib.h>
 #define SIZE 10
 
 // A recursive binary search function. It returns
 // location of x in given array arr[l..r] is present,
 // otherwise -1
+using namespace std;
 int binarySearch(int arr[], int l, int r, int x)
 {
    if (l <= r)
@@ -39,7 +42,7 @@ int main(void)
             cout<<items[i]<<"\t";
         }
         cout<<"\nEnter Value to be searched:"<<endl;
-        scanf("%d",&x);
+        cin>>x;
         searchIndex=binarySearch(items,0,SIZE-1,x);
         if(searchIndex==-1){
             cout<<"Elements not found in array!!"<<endl;
