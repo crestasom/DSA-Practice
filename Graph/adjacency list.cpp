@@ -1,6 +1,7 @@
 #include<iostream>
-#define maxNode 4
+#define maxNode 20
 using namespace std;
+int n;
 typedef struct Node
 {
     int vertexNum;
@@ -18,7 +19,8 @@ void printList()
 {
     int i;
     Node *temp;
-    for(i=0;i<maxNode;i++)
+
+    for(i=1;i<=n;i++)
     {
         //cout<<adjList[i]<<"->";
         temp=adjList[i]->head;
@@ -55,20 +57,37 @@ void addNode(int s,int d)
 
 main()
 {
-    int i;
+    int i, max_edges, origin, destin;
+
+    cout<<"Enter number of nodes : ";
+    cin>>n;
+    max_edges = n * (n - 1);
     for(int i=0;i<maxNode;i++)
     {
         //create a new head pointer for each vertices
      adjList[i]=new(List);
      adjList[i]->head=NULL;
     }
-    addNode(0,1);
-    addNode(0,3);
-    addNode(1,2);
-    addNode(2,1);
-    addNode(2,3);
-    addNode(2,0);
-    addNode(3,1);
-    addNode(3,0);
+
+     for (i = 1; i <= max_edges; i++) {
+        cout<<"Enter edge "<<i<<"( 0 0 ) to quit : ";
+        cin>>origin>>destin;
+        if ((origin == 0) && (destin == 0))
+            break;
+        if (origin > n || destin > n || origin <= 0 || destin <= 0) {
+            cout<<"Invalid edge!\n";
+            i--;
+        } else
+            addNode(origin,destin);
+            addNode(destin,origin);
+    }
+//    addNode(0,1);
+//    addNode(0,3);
+//    addNode(1,2);
+//    addNode(2,1);
+//    addNode(2,3);
+//    addNode(2,0);
+//    addNode(3,1);
+//    addNode(3,0);
     printList();
 }
