@@ -81,13 +81,5 @@ main()
             addNode(origin,destin);
             addNode(destin,origin);
     }
-//    addNode(0,1);
-//    addNode(0,3);
-//    addNode(1,2);
-//    addNode(2,1);
-//    addNode(2,3);
-//    addNode(2,0);
-//    addNode(3,1);
-//    addNode(3,0);
     printList();
 }
